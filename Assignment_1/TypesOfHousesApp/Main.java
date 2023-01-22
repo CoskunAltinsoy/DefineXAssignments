@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Main {
     public static void main(String args[]){
+
+        //null space will be set later with Property class.
         PropertyType propertyType1 = new PropertyType(1L,"House",
                                   "New House",null);
 
@@ -40,12 +42,14 @@ public class Main {
         Property propertySummerhouse3 = new Property(9L,"SummerHouse",600000D,45,
                 2,10,propertyType3,1);
 
+        //PropertyType class must be set with List<Property>
         List<Property> houseProperties = new ArrayList<>();
         houseProperties.add(propertyHouse1);
         houseProperties.add(propertyHouse2);
         houseProperties.add(propertyHouse3);
 
-        propertyType1.setProperties(houseProperties); //
+        //Setting
+        propertyType1.setProperties(houseProperties);
 
         List<Property> villaProperties = new ArrayList<>();
         villaProperties.add(propertyVilla1);
@@ -60,6 +64,7 @@ public class Main {
         summerhouseProperties.add(propertySummerhouse3);
 
         propertyType3.setProperties(summerhouseProperties); //
+
 
 
 

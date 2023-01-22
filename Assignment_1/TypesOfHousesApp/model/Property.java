@@ -11,6 +11,8 @@ public class Property {
     private int ageOfApartment;
 
     private int numberOfHall;
+
+    //Many-to-one relationship
     private PropertyType propertyTypeId;
 
     public Property() {
@@ -87,27 +89,6 @@ public class Property {
     public void setPropertyTypeId(PropertyType propertyTypeId) {
         this.propertyTypeId = propertyTypeId;
     }
-
-   /* @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Property property)) return false;
-        return getSquareMeters() == property.getSquareMeters() &&
-                getNumberOfRooms() == property.getNumberOfRooms() &&
-                getAgeOfApartment() == property.getAgeOfApartment() &&
-                getNumberOfHall() == property.getNumberOfHall() &&
-                Objects.equals(getPropertyId(), property.getPropertyId()) &&
-                Objects.equals(getPropertyName(), property.getPropertyName()) &&
-                Objects.equals(getPrice(), property.getPrice()) &&
-                Objects.equals(getPropertyTypeId(), property.getPropertyTypeId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getPropertyId(), getPropertyName(),
-                            getPrice(), getSquareMeters(), getNumberOfRooms(),
-                            getAgeOfApartment(),getNumberOfHall(), getPropertyTypeId());
-    }*/
 
     @Override
     public String toString() {

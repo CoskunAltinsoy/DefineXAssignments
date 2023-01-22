@@ -7,6 +7,8 @@ public class PropertyType {
     private Long propertyTypeId;
     private String propertyTypeName;
     private String propertyTypeDescription;
+
+    //One-to-many relationship
     private List<Property> properties;
     public PropertyType(){
     }
@@ -50,23 +52,8 @@ public class PropertyType {
         this.properties = properties;
     }
 
-  /*  @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PropertyType that)) return false;
-        return Objects.equals(getPropertyTypeId(), that.getPropertyTypeId()) &&
-                Objects.equals(getPropertyTypeName(), that.getPropertyTypeName()) &&
-                Objects.equals(getPropertyTypeDescription(), that.getPropertyTypeDescription()) &&
-                Objects.equals(getProperties(), that.getProperties());
-    }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getPropertyTypeId(), getPropertyTypeName(),
-                getPropertyTypeDescription(), getProperties());
-    }
-
-   /* @Override
     public String toString() {
         return "PropertyType{" +
                 "propertyTypeId=" + propertyTypeId +
@@ -74,5 +61,5 @@ public class PropertyType {
                 ", propertyTypeDescription='" + propertyTypeDescription + '\'' +
                 ", properties=" + properties +
                 '}';
-    }*/
+    }
 }
