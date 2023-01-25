@@ -1,6 +1,5 @@
 package com.example.orderapp.model;
 
-import lombok.Data;
 
 import java.util.List;
 
