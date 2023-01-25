@@ -1,7 +1,10 @@
 package com.example.orderapp.service;
 
+import com.example.orderapp.model.Bill;
 import com.example.orderapp.model.IndividualCustomer;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +23,7 @@ public class IndividualCustomerService {
     }
 
     public void createIndividualCustomer(IndividualCustomer customer){
+        customer.setCreatedDate(LocalDate.now());
         this.individualCustomers.add(customer);
     }
 
@@ -30,6 +34,18 @@ public class IndividualCustomerService {
                 customers.add(customer);
             }
         }
-        return  customers;
+        return customers;
+    }
+    public Double getAllPrice(){
+        double totalPrice =0;
+        for (IndividualCustomer customer: individualCustomers) {
+            if (customer.getCreatedDate().getMonth().equals(Month.JUNE)){
+                List<Bill> bills = customer.getBills().stream().collect(Collectors.toList());
+                for (Bill bill:bills) {
+                    totalPrice+=bill.getPrice();
+                }
+            }
+        }
+        return totalPrice;
     }
 }

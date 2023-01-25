@@ -1,5 +1,6 @@
 package com.example.orderapp.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class IndividualCustomer extends  Customer{
@@ -7,12 +8,13 @@ public class IndividualCustomer extends  Customer{
     private String lastName;
     private String nationalIdentity;
 
+
     public IndividualCustomer() {
         super();
     }
-    public IndividualCustomer(Long id, String email, List<Order> orders, List<Bill> bills,
+    public IndividualCustomer(Long id, String email, LocalDate createdDate, List<Order> orders, List<Bill> bills,
                               String firstName, String lastName, String nationalIdentity) {
-        super(id, email, orders, bills);
+        super(id, email,createdDate, orders, bills);
         this.firstName = firstName;
         this.lastName = lastName;
         this.nationalIdentity = nationalIdentity;

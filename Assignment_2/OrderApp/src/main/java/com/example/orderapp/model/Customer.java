@@ -1,23 +1,28 @@
 package com.example.orderapp.model;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 public abstract class Customer {
     private Long id;
     private String email;
+    private LocalDate createdDate;
     private  List<Order> orders;
     private List<Bill> bills;
 
     public Customer() {
     }
 
-    public Customer(Long id, String email, List<Order> orders, List<Bill> bills) {
+    public Customer(Long id, String email, LocalDate createdDate, List<Order> orders, List<Bill> bills) {
         this.id = id;
         this.email = email;
+        this.createdDate= createdDate;
         this.orders = orders;
         this.bills = bills;
     }
+
+
 
     public Long getId() {
         return id;
@@ -34,7 +39,12 @@ public abstract class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
     public List<Order> getOrders() {
         return orders;
     }
@@ -56,6 +66,7 @@ public abstract class Customer {
         return "Customer{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
+                ", createdDate=" + createdDate +
                 ", orders=" + orders +
                 ", bills=" + bills +
                 '}';
