@@ -65,7 +65,7 @@ public class IndividualCustomerService {
         }
         return bills;
     }
-    public Double getAvarageOfBillsGreaterThanOneThousandFiveHundred(){
+    public Double getAvarageOfBillsHigherThanOneThousandFiveHundred(){
         List<Bill> bills = new ArrayList<>();
         double average = 0d;
         double totalPrice = 0d;
@@ -79,5 +79,19 @@ public class IndividualCustomerService {
             average = totalPrice/billSize;
         }
         return average;
+    }
+    public List<String> getAllIndividualCustomerLowerThanFiveHundred(){
+        List<Bill> bills = new ArrayList<>();
+        List<String> fullNameList = new ArrayList<>();
+        for (IndividualCustomer individualCustomer: individualCustomers) {
+            bills = individualCustomer.getBills().stream().filter(x->x.getPrice()<500)
+                    .collect(Collectors.toList());
+            if(!bills.isEmpty()){
+                fullNameList.add(individualCustomer.getFirstName() + individualCustomer.getLastName());
+            }
+
+        }
+
+
     }
 }
