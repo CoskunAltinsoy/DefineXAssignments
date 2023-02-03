@@ -27,7 +27,7 @@ public class IndividualCustomerService {
         this.individualCustomers.add(customer);
     }
 
-    public List<IndividualCustomer> getIndividualCustomersWithC() {
+    public List<IndividualCustomer> getIndividualCustomersContainC() {
         List<IndividualCustomer> customers = new ArrayList<>();
         for (IndividualCustomer customer:this.individualCustomers) {
             if (customer.getFirstName().toLowerCase().contains("c")){
@@ -36,16 +36,48 @@ public class IndividualCustomerService {
         }
         return customers;
     }
-    public Double getAllPrice(){
-        double totalPrice =0;
+    public Double getAllPriceCreatedInJune(){
+        double totalPrice = 0;
         for (IndividualCustomer customer: individualCustomers) {
             if (customer.getCreatedDate().getMonth().equals(Month.JUNE)){
-                List<Bill> bills = customer.getBills().stream().collect(Collectors.toList());
+                List<Bill> bills = customer.getBills();
                 for (Bill bill:bills) {
                     totalPrice+=bill.getPrice();
                 }
             }
         }
         return totalPrice;
+    }
+
+    public List<String> getAllBills(){
+        List<String> bills = new ArrayList<>();
+        for (IndividualCustomer individualCustomer: individualCustomers) {
+            bills = individualCustomer.getBills().stream().map(x->x.toString()).collect(Collectors.toList());
+        }
+        return bills;
+    }
+    // >1500
+    public List<Bill> getAllBillsHigherThanOneThousandFiveHundred(){
+        List<Bill> bills = new ArrayList<>();
+        for (IndividualCustomer individualCustomer: individualCustomers) {
+            bills = individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
+                    .collect(Collectors.toList());
+        }
+        return bills;
+    }
+    public Double getAvarageOfBillsGreaterThanOneThousandFiveHundred(){
+        List<Bill> bills = new ArrayList<>();
+        double average = 0d;
+        double totalPrice = 0d;
+        for (IndividualCustomer individualCustomer: individualCustomers) {
+            bills = individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
+                    .collect(Collectors.toList());
+            int billSize = bills.size();
+            for (Bill bill: bills) {
+                totalPrice += bill.getPrice();
+            };
+            average = totalPrice/billSize;
+        }
+        return average;
     }
 }
