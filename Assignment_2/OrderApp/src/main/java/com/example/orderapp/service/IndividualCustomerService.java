@@ -1,6 +1,7 @@
 package com.example.orderapp.service;
 
 import com.example.orderapp.model.Bill;
+import com.example.orderapp.model.Customer;
 import com.example.orderapp.model.IndividualCustomer;
 
 import java.time.LocalDate;
@@ -78,7 +79,7 @@ public class IndividualCustomerService {
             totalPrice += bill.getPrice();
         };
         average = totalPrice/billSize;
-        
+
         return average;
     }
     public List<String> getAllIndividualCustomerLowerThanFiveHundred(){
