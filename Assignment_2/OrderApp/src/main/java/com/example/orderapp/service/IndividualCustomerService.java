@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class IndividualCustomerService {
     private final List<IndividualCustomer> individualCustomers;
-    public IndividualCustomerService(List<IndividualCustomer> individualCustomers) {
-        this.individualCustomers = individualCustomers;
+    public IndividualCustomerService() {
+        this.individualCustomers = new ArrayList<>();
     }
     public List<IndividualCustomer> getAllIndividualCustomers(){
         return this.individualCustomers.stream().map(x->x).collect(Collectors.toList());
@@ -24,7 +24,6 @@ public class IndividualCustomerService {
     }
 
     public void createIndividualCustomer(IndividualCustomer customer){
-        customer.setCreatedDate(LocalDate.now());
         this.individualCustomers.add(customer);
     }
 
@@ -50,29 +49,29 @@ public class IndividualCustomerService {
         return totalPrice;
     }
 
-    public List<String> getAllBills(){
-        List<String> bills = new ArrayList<>();
-        for (IndividualCustomer individualCustomer: individualCustomers) {
-            bills = individualCustomer.getBills().stream().map(x->x.toString()).collect(Collectors.toList());
-        }
-        return bills;
-    }
-    // >1500
-    public List<Bill> getAllBillsHigherThanOneThousandFiveHundred(){
+    public List<Bill> getAllBills(){
         List<Bill> bills = new ArrayList<>();
         for (IndividualCustomer individualCustomer: individualCustomers) {
-            bills = individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
-                    .collect(Collectors.toList());
+            bills.addAll(individualCustomer.getBills());
         }
         return bills;
     }
-    public Double getAvarageOfBillsHigherThanOneThousandFiveHundred(){
+
+    public List<Bill> getAllBillsMoreThanOneThousandFiveHundred(){
+        List<Bill> bills = new ArrayList<>();
+        for (IndividualCustomer individualCustomer: individualCustomers) {
+            bills.addAll(individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
+                    .collect(Collectors.toList()));
+        }
+        return bills;
+    }
+    public Double getAvarageOfBillsMoreThanOneThousandFiveHundred(){
         List<Bill> bills = new ArrayList<>();
         double average = 0d;
         double totalPrice = 0d;
         for (IndividualCustomer individualCustomer: individualCustomers) {
-            bills = individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
-                    .collect(Collectors.toList());
+            bills.addAll(individualCustomer.getBills().stream().filter(x->x.getPrice()>1500)
+                    .collect(Collectors.toList()));
         }
         int billSize = bills.size();
         for (Bill bill: bills) {
@@ -82,13 +81,13 @@ public class IndividualCustomerService {
 
         return average;
     }
-    public List<String> getAllIndividualCustomerLowerThanFiveHundred(){
+    public List<String> getAllIndividualCustomerLessThanFiveHundred(){
         List<String> fullNameList = new ArrayList<>();
         for (IndividualCustomer individualCustomer: individualCustomers) {
-            List<Bill> bills  = individualCustomer.getBills().stream().filter(x->x.getPrice()<500)
+            List<Bill> bills = individualCustomer.getBills().stream().filter(x->x.getPrice()<500)
                     .collect(Collectors.toList());
             if(!bills.isEmpty()){
-                fullNameList.add(individualCustomer.getFirstName() + individualCustomer.getLastName());
+                fullNameList.add(individualCustomer.getFirstName() + " " +individualCustomer.getLastName());
             }
 
         }
