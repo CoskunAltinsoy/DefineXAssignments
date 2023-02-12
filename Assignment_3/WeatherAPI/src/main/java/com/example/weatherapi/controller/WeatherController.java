@@ -1,5 +1,6 @@
 package com.example.weatherapi.controller;
 
+import com.example.weatherapi.dto.WeatherDto;
 import com.example.weatherapi.model.Weather;
 import com.example.weatherapi.service.WeatherServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/weather")
 public class WeatherController {
     private final WeatherServiceImpl weatherService;
-
-
     @Autowired
     public WeatherController(WeatherServiceImpl weatherService) {
         this.weatherService = weatherService;
     }
     @GetMapping("/{cityName}")
-    public ResponseEntity<Weather> getWeatherByCityName(@PathVariable("cityName") String cityName) {
+    public ResponseEntity<WeatherDto> getWeatherByCityName(@PathVariable("cityName") String cityName) {
         return ResponseEntity.ok(this.weatherService.getWeather(cityName));
     }
 

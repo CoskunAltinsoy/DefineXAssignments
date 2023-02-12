@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Weather implements Serializable {
     private int id;
-    private List<Main> main;
+    private Main main;
 
 
 }

@@ -13,7 +13,7 @@ public class MainConverter {
         return new MainDto(main.getTemp(),main.getFeels_like(),main.getTemp_min(),
                 main.getTemp_max(),main.getPressure(),main.getHumidity());
     }
-    public List<MainDto> convert(List<Main> main){
-        return main.stream().map(from->convert(from)).collect(Collectors.toList());
+    public List<MainDto> convert(List<Main> mains){
+        return mains.stream().map(from->convert(from)).collect(Collectors.toList());
     }
 }

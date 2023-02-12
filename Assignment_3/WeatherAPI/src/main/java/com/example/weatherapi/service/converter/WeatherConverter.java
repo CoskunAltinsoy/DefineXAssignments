@@ -6,6 +6,7 @@ import com.example.weatherapi.model.Main;
 import com.example.weatherapi.model.Weather;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
