@@ -1,6 +1,7 @@
 package com.example.weatherapi.service;
 
 import com.example.weatherapi.dto.WeatherDto;
+import com.example.weatherapi.exception.WeatherNotFoundException;
 import com.example.weatherapi.model.Weather;
 import com.example.weatherapi.service.converter.WeatherConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class WeatherServiceImpl implements WeatherService {
     public WeatherDto getWeather(String cityName){
         Weather weather = restTemplate.getForObject(url + cityName + "&appid="
                 + apiKey + "&units=metric",Weather.class);
+        if (weather.equals(null)){
+            throw new WeatherNotFoundException("Failed to fetch data.");
+        }
         return this.weatherConverter.convert(weather);
     }
 
@@ -34,12 +38,20 @@ public class WeatherServiceImpl implements WeatherService {
     public WeatherDto getWeatherDaily(String cityName) {
         Weather weather = restTemplate.getForObject(url + cityName + "&appid="
                      + apiKey + "&cnt=7&units=metric",Weather.class);
+        if (weather.equals(null)){
+            throw new WeatherNotFoundException("Failed to fetch data.");
+        }
         return this.weatherConverter.convert(weather);
     }
 
     @Override
     public WeatherDto getWeatherWeekly(String cityName) {
-        return null;
+        Weather weather = restTemplate.getForObject(url + cityName + "&appid="
+                + apiKey + "&cnt=30&units=metric",Weather.class);
+        if (weather.equals(null)){
+            throw new WeatherNotFoundException("Failed to fetch data.");
+        }
+        return this.weatherConverter.convert(weather);
     }
 
 }

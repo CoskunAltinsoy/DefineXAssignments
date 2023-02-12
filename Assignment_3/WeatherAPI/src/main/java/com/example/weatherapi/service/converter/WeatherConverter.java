@@ -4,6 +4,7 @@ import com.example.weatherapi.dto.MainDto;
 import com.example.weatherapi.dto.WeatherDto;
 import com.example.weatherapi.model.Main;
 import com.example.weatherapi.model.Weather;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Component
 public class WeatherConverter {
     private final MainConverter mainConverter;
+    @Autowired
     public WeatherConverter(MainConverter mainConverter) {
         this.mainConverter = mainConverter;
     }
